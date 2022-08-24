@@ -1,0 +1,529 @@
+<style>
+	<!--
+	#wfrmig-23 {
+		display: none !important;
+	}
+
+	[data-search-system-name] input {
+		width: 100%;
+		box-sizing: border-box;
+		padding: 1em 2em;
+		padding-left: 4em;
+		border: 2px solid;
+		border-color: rgba(0, 0, 0, 0);
+		background-color: rgba(0, 0, 0, 0.05);
+		outline: none;
+		transition: border-color .8s cubic-bezier(0.65, 0, 0.35, 1);
+		border-radius: 16px;
+	}
+
+	.wrap-search-input-faq {
+		position: relative;
+	}
+
+	.wrap-search-input-faq svg {
+		position: absolute;
+		left: 1em;
+		pointer-events: none;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+
+	[data-search-system-name] input:hover,
+	[data-search-system-name] input:focus {
+		box-shadow: none;
+	}
+
+	[data-search-system-name] input:focus {
+		border-color: rgba(0, 0, 0, 1);
+	}
+
+	.vertical-space {
+		padding: 1.5em 0;
+	}
+
+	.grid-container {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+		gap: 1.5em;
+	}
+
+	body.ie .grid-container {
+		display: flex;
+		flex-direction: row;
+		flex-grow: 1;
+		flex-wrap: wrap;
+		margin: -.75em;
+	}
+
+	body.ie .grid-container>.grid-element {
+		flex-basis: calc((100% / 3) - (2 * .75em) - 1px);
+		min-width: 350px;
+		box-sizing: border-box;
+		margin: .75em;
+	}
+
+
+	.grid-container>.grid-element>.category-illustration {
+		background-color: rgba(0, 0, 0, 0.05);
+		background-size: 100% auto;
+		background-position: center;
+		background-repeat: no-repeat;
+		height: 12em;
+		position: relative;
+	}
+
+	.grid-container>.grid-element>.category-illustration::after {
+		content: '';
+		position: absolute;
+		z-index: 1;
+		left: 0;
+		bottom: 0;
+		height: 50%;
+		width: 100%;
+		background: linear-gradient(0deg, rgba(0, 0, 0, .5) 0%, rgba(255, 255, 255, 0) 100%);
+	}
+
+
+
+	.grid-container>.grid-element>.category-illustration>.category-title {
+		position: absolute;
+		z-index: 2;
+		bottom: 0;
+		left: 0;
+		margin: 0;
+	}
+
+	.grid-container>.grid-element>.category-illustration h2 {
+		color: white;
+		font-size: 1.65em;
+		margin: 0;
+	}
+
+	.grid-container>.grid-element>.category-illustration>.category-title,
+	.grid-container>.grid-element>.category-items {
+		padding: 1em 1.5em;
+	}
+
+	.category-items .category-item {
+		padding: 0;
+		position: relative;
+	}
+
+	.category-item-icon {
+		position: absolute;
+		left: -1.5em;
+		top: .25em;
+		width: 1em;
+		height: 1em;
+	}
+
+
+	/* TITLE ANIMATION */
+
+	h1[data-animation="title"] {
+		padding: 0;
+		margin: 0;
+		font-size: 2em;
+		display: inline-flex;
+		width: 100%;
+		overflow: hidden;
+	}
+
+	[data-animation="title"]>[data-animation-title-fixed] {
+		flex-basis: auto;
+		flex-shrink: 0;
+		flex-grow: 0;
+	}
+
+	[data-animation="title"]>[data-animation-title-fixed]::after {
+		content: '\00a0';
+	}
+
+	[data-animation="title"]>[data-animation-title-moving-container] {
+		display: block;
+		width: 100%;
+		position: relative;
+	}
+
+	[data-animation="title"]>[data-animation-title-moving-container]>[data-animation-title-moving] {
+		position: absolute;
+		color: #c00;
+		transform: translateY(100%);
+		animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1);
+	}
+
+
+	[data-animation-title-moving].animation-show {
+		animation: TitleAnimationShow 1.5s forwards;
+	}
+
+	[data-animation-title-moving].animation-hide {
+		animation: TitleAnimationHide 1.5s;
+	}
+
+	@keyframes TitleAnimationShow {
+		from {
+			transform: translateY(100%);
+		}
+
+		to {
+			transform: translateY(0%);
+		}
+	}
+
+	@keyframes TitleAnimationHide {
+		from {
+			transform: translateY(0%);
+		}
+
+		to {
+			transform: translateY(-100%);
+		}
+	}
+
+
+	/* CATEGORIES IMAGE DEFINITION */
+
+	.category-illustration.illustration-fixation {
+		background-image: url(https://media.wurth.fr/web_ressources/projects/faq/mon-compte.jpg);
+	}
+
+	.category-illustration.illustration-chimique {
+		background-image: url(https://media.wurth.fr/web_ressources/projects/faq/magasins.jpg);
+	}
+
+	.category-illustration.illustration-equipement {
+		background-image: url(https://media.wurth.fr/web_ressources/projects/faq/eshop.jpg);
+	}
+
+	.category-illustration.illustration-nettoyage {
+		background-image: url(https://media.wurth.fr/web_ressources/projects/faq/commandes.jpg);
+	}
+
+	.category-illustration.illustration-outillage {
+		background-image: url(https://media.wurth.fr/web_ressources/projects/faq/documentations-questions-techniques.jpg);
+	}
+
+	.category-illustration.illustration-epi {
+		background-image: url(https://media.wurth.fr/web_ressources/projects/faq/autres-questions.jpg);
+	}
+
+	/* LINK TYPE IMAGE DEFINITION */
+
+	.category-item-icon.icon-file {
+		background-image: url(https://media.wurth.fr/web_ressources/img/landing/hub_choice_guide/svg/pictos_file_positive.svg);
+	}
+
+	.category-item-icon.icon-magnifier {
+		background-image: url(https://media.wurth.fr/web_ressources/img/landing/hub_choice_guide/svg/pictos_magnifier_positive.svg);
+	}
+
+	.category-item-icon.icon-calculator {
+		background-image: url(https://media.wurth.fr/web_ressources/img/landing/hub_choice_guide/svg/pictos_calculator_positive.svg);
+	}
+
+	.category-item-icon.icon-configurator {
+		background-image: url(https://media.wurth.fr/web_ressources/img/landing/hub_choice_guide/svg/pictos_configurator_positive.svg);
+	}
+
+	.category-item-icon.icon-question {
+		background-image: url(https://media.wurth.fr/web_ressources/projects/faq/svg/pictos_faq_question.svg);
+	}
+
+
+	/* Icône new */
+	.category-item-text.new::after {
+		content: url('https://media.wurth.fr/eshop/img/animations/2022/0422-guide-de-choix-essuie-glace/new.gif');
+	}
+
+	.category-item .category-item-text a {
+		cursor: pointer;
+	}
+
+	.category-item .category-item-text a:hover {
+		color: #cc0000;
+	}
+	-->
+</style>
+<div data-search-system-name="finder"
+	data-search-system-settings="{'feedMode': ['textContent', 'keyWords'],'autoSelect':false}">
+	<div class="wrap-search-input-faq"><input type="text" data-search-system-input=""
+			placeholder="Rechercher une question..." /> <svg width="26" height="26" viewbox="0 0 26 26" fill="none"
+			xmlns="http://www.w3.org/2000/svg">
+			<path
+				d="M24.9191 23.8442L17.9611 16.8862C18.7586 15.9585 19.369 14.9494 19.7921 13.8589C20.2479 12.7033 20.4757 11.507 20.4757 10.27C20.4757 8.43083 20.0119 6.72998 19.0841 5.16748C18.1727 3.63753 16.952 2.41683 15.422 1.50537C13.8432 0.593913 12.1343 0.138184 10.2951 0.138184C8.45588 0.138184 6.74689 0.593913 5.16812 1.50537C3.63817 2.41683 2.4256 3.63753 1.53042 5.16748C0.602688 6.74626 0.138821 8.45524 0.138821 10.2944C0.138821 12.1336 0.602688 13.8426 1.53042 15.4214C2.4256 16.9513 3.63817 18.1639 5.16812 19.0591C6.74689 19.9705 8.45588 20.4263 10.2951 20.4263C11.532 20.4263 12.7283 20.2065 13.8839 19.7671C14.9744 19.3439 15.9835 18.7417 16.9113 17.9604L23.8693 24.894C24.0158 25.0568 24.1867 25.1382 24.382 25.1382C24.5936 25.1382 24.7726 25.0649 24.9191 24.9185C25.0656 24.772 25.1388 24.5929 25.1388 24.3813C25.1388 24.186 25.0656 24.007 24.9191 23.8442ZM10.2951 18.8882C8.73257 18.8882 7.284 18.4976 5.94937 17.7163C4.66356 16.9513 3.63817 15.9178 2.8732 14.6157C2.10822 13.2811 1.72573 11.8407 1.72573 10.2944C1.72573 8.73193 2.10822 7.28337 2.8732 5.94873C3.63817 4.64665 4.66356 3.62126 5.94937 2.87256C7.284 2.09131 8.72443 1.70068 10.2707 1.70068C11.8332 1.70068 13.2899 2.09131 14.6408 2.87256C15.9266 3.62126 16.952 4.64665 17.7169 5.94873C18.4982 7.28337 18.8888 8.73193 18.8888 10.2944C18.8888 11.8407 18.4982 13.2811 17.7169 14.6157C16.952 15.9178 15.9266 16.9513 14.6408 17.7163C13.2899 18.4976 11.8413 18.8882 10.2951 18.8882Z"
+				fill="#959595"></path>
+		</svg></div>
+	<div class="grid-container vertical-space">
+		<div class="grid-element" data-search-system-category="">
+			<div class="category-illustration illustration-fixation">
+				<div class="category-title">
+					<h2>Mon Compte</h2>
+				</div>
+			</div>
+			<div class="category-items">
+				<div class="category-item"
+					data-search-system-item="Comment m’inscrire ? inscription inscriptions création de compte creation de compte création compte creation compte créer un compte créer compte ouverture compte ouvrir compte ouvrir un compte comptes m'inscrire s'inscrire">
+					<div class="category-item-icon icon-question"></div>
+					<div class="category-item-text"><a>Comment m’inscrire ?</a>
+						<div style="display: none;" class="ghost-faq">
+							<h3>Comment m’inscrire ?</h3>
+							<p>Il suffit tout simplement de <a
+									href="https://eshop.wurth.fr/is-bin/INTERSHOP.enfinity/WFS/3107-B1-Site/fr_FR/-/EUR/ViewRegistration-Step1View"
+									target="_blank">cliquer sur se connecter</a>, créer votre accès Eshop puis
+								s’inscrire. Vous devez être professionnel et disposer d'un n° de SIRET pour vous
+								inscrire.</p>
+						</div>
+					</div>
+				</div>
+				<div class="category-item"
+					data-search-system-item="Comment me connecter à mon compte ? connexion connexions connection première connexion comptes connecte compte accéder compte ">
+					<div class="category-item-icon icon-question"></div>
+					<div class="category-item-text"><a>Comment me connecter à mon compte ?</a>
+						<div style="display: none;" class="ghost-faq">
+							<h3>Comment me connecter à mon compte ?</h3>
+							<p>Pour vous connecter, vous avez besoin de 3 informations, le n° de client commençant par
+								107 (que vous pourrez retrouver sur vos factures), votre login ainsi que le mot de
+								passe.</p>
+						</div>
+					</div>
+				</div>
+				<div class="category-item"
+					data-search-system-item="Comment retrouver mes accès ? Comment récupérer mon mot de passe ? acces connexion connexions identifiant identifiants identification compte comptes recuperer recuperation mdp récupère perdu">
+					<div class="category-item-icon icon-question"></div>
+					<div class="category-item-text"><a>Comment retrouver mes accès ? Comment récupérer mon mot de
+							passe ?</a>
+						<div style="display: none;" class="ghost-faq">
+							<h3>Comment retrouver mes accès ? Comment récupérer mon mot de passe?</h3>
+							<p>Si vous avez perdu votre mot de passe, cliquez sur le lien « Mot de passe oublié ». Il
+								est placé sous la zone de saisie de vos identifiants. Il faudra vous munir de votre
+								numéro client et de votre identifiant. Saisissez les dans les champs prévus à cet effet
+								et suivez les instructions. Vous recevrez alors un email qui vous permettra de changer
+								votre mot de passe. Si vous ne recevez pas d’email suite à cette démarche, ou si vous ne
+								vous souvenez pas de vos identifiants, utilisez le formulaire de contact et choisissez
+								la rubrique « Boutique en ligne »</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="grid-element" data-search-system-category="">
+			<div class="category-illustration illustration-chimique">
+				<div class="category-title">
+					<h2>Magasins</h2>
+				</div>
+			</div>
+			<div class="category-items">
+				<div class="category-item"
+					data-search-system-item="Comment consulter les stocks des magasins ? produit disponible produits disponibles stocks magazin dispo disponibilité disponibilite produit produits magasin proxi ">
+					<div class="category-item-icon icon-question"></div>
+					<div class="category-item-text"><a>Comment consulter les stocks des magasins ?</a>
+						<div style="display: none;" class="ghost-faq">
+							<h3>Comment consulter les stocks des magasins ?</h3>
+							<div class="popup-flex-wrap">
+								<div class="popup-flex-content-1">
+									<p>Une fois connecté, il suffit de rechercher la référence de l’article dans la
+										barre de recherche du site, puis de vérifier que l’icône "Vérifier le stock"
+										soit présente sur la page produit.</p>
+								</div>
+								<div class="popup-flex-content-2">
+									<div class="wrap-image"><img onclick="growImage()"
+											src="https://media.wurth.fr/web_ressources/projects/faq/questions/magasins/comment-consulter-les-stocks-des-magasins.jpg" />
+									</div>
+									<div class="wrap-legend"><span>Capture d'écran de la page produit.</span></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="category-item"
+					data-search-system-item="Comment retrouver un magasin, ses horaires, coordonnées ? proxi proche localisation point de vente heure numéro téléphone ventes magazin dispo disponibilité disponibilite horaires coordonnée coordonnées">
+					<div class="category-item-icon icon-question"></div>
+					<div class="category-item-text"><a>Comment retrouver un magasin, ses horaires, coordonnées ?</a>
+						<div style="display: none;" class="ghost-faq">
+							<h3>Comment consulter les stocks des magasins ?</h3>
+							<p>Rendez-vous sur le <a target="_blank"
+									href="https://magasins.wurth.fr/?utm_source=Eshop&amp;utm_medium=lien-menu&amp;utm_content=lien-menu">lien
+									vers la page magasin</a> <br /> Il suffit de rechercher le magasin grâce à votre
+								code postal par exemple, et ainsi vous trouverez le magasin le plus proche de chez vous
+								avec ses coordonnées complètes, ses horaires d’ouverture et son n° de téléphone.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="grid-element" data-search-system-category="">
+			<div class="category-illustration illustration-equipement">
+				<div class="category-title">
+					<h2>Eshop</h2>
+				</div>
+			</div>
+			<div class="category-items">
+				<div class="category-item"
+					data-search-system-item="Comment voir mes prix ? tarif tarifs offre offres consulter catalogue catalogues prix">
+					<div class="category-item-icon icon-question"></div>
+					<div class="category-item-text"><a>Comment voir mes prix ?</a>
+						<div style="display: none;" class="ghost-faq">
+							<h3>Comment voir mes prix ?</h3>
+							<p>Pour accéder à vos tarifs, connectez-vous à votre compte grâce à votre n° de client,
+								votre login et votre mot de passe.</p>
+						</div>
+					</div>
+				</div>
+				<div class="category-item"
+					data-search-system-item="Mon coupon cadeau ne fonctionne pas, comment faire ? offres réductions reduction promotion promotions coupons cadeau cadeaux">
+					<div class="category-item-icon icon-question"></div>
+					<div class="category-item-text"><a>Mon coupon cadeau ne fonctionne pas, comment faire ?</a>
+						<div style="display: none;" class="ghost-faq">
+							<h3>Mon coupon cadeau ne fonctionne pas, comment faire ?</h3>
+							<p>Si votre coupon ne fonctionne pas, il suffit de nous contacter par téléphone
+								(03.88.64.85.01) ou par le chat, pendant nos horaires d’ouverture de 7h à 18h en non
+								stop.</p>
+						</div>
+					</div>
+				</div>
+				<div class="category-item"
+					data-search-system-item="Les fonctionnalités Eshop vente en ligne e-shop avantages online commander gestion budget historique cout coût centre eresa click and collect application mobile app">
+					<div class="category-item-icon icon-question"></div>
+					<div class="category-item-text"><a>Les fonctionnalités Eshop</a>
+						<div style="display: none;" class="ghost-faq">
+							<h3>Les fonctionnalités Eshop</h3>
+							<p>Retrouvez toutes les fonctionnalités eshop en suivant ce <a target="_blank"
+									href="https://eshop.wurth.fr/Fonctionnalites-Eshop/fonctionnalites.cyid/fonctionnalites.cgid/fr/FR/EUR/">lien</a>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="grid-element" data-search-system-category="">
+			<div class="category-illustration illustration-nettoyage">
+				<div class="category-title">
+					<h2>Commandes</h2>
+				</div>
+			</div>
+			<div class="category-items">
+				<div class="category-item"
+					data-search-system-item="Comment commander ? passer commande passer une commande commandes acheter achat achète payer produit produits">
+					<div class="category-item-icon icon-question"></div>
+					<div class="category-item-text"><a>Comment commander ?</a>
+						<div style="display: none;" class="ghost-faq">
+							<h3>Comment commander ?</h3>
+							<p>Vous pouvez directement <a target="_blank"
+									href="https://www.wurth.fr/fr/quincaillerie/contact/formulaire/formulaire_contact.php">contacter
+									un commercial Wurth</a><br />Rendez-vous dans l'un de nos <a target="_blank"
+									href="https://magasins.wurth.fr/?utm_source=Eshop&amp;utm_medium=lien-menu&amp;utm_content=lien-menu">magasins</a><br />Connectez-vous
+								sur notre <a href="https://eshop.wurth.fr/">boutique en ligne</a></p>
+						</div>
+					</div>
+				</div>
+				<div class="category-item"
+					data-search-system-item="Comment suivre ma commande ? suivi livraison livrer livraisons commandes état avancement etat">
+					<div class="category-item-icon icon-question"></div>
+					<div class="category-item-text"><a>Comment suivre ma commande ?</a>
+						<div style="display: none;" class="ghost-faq">
+							<h3>Comment suivre ma commande ?</h3>
+							<p>Connectez-vous à votre compte, puis cliquez sur "Mon compte" en haut à droite, et "Mes
+								commandes". Vous y trouverez l’historique de vos commandes et vous pourrez ainsi suivre
+								celles en attente de livraison.</p>
+						</div>
+					</div>
+				</div>
+				<div class="category-item" data-search-system-item="Comment retrouver mon historique de commande ?">
+					<div class="category-item-icon icon-question"></div>
+					<div class="category-item-text"><a>Comment retrouver mon historique de commande ?</a>
+						<div style="display: none;" class="ghost-faq">
+							<h3>Comment retrouver mon historique de commande ?</h3>
+							<p>Une fois connecté à votre compte, cliquer en haut à droite sur "Mon compte", puis "Mes
+								commandes". L’historique de commande s’affichera directement.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="grid-element" data-search-system-category="">
+			<div class="category-illustration illustration-outillage">
+				<div class="category-title">
+					<h2>Documentations, questions techniques</h2>
+				</div>
+			</div>
+			<div class="category-items">
+				<div class="category-item"
+					data-search-system-item="Comment obtenir les FDS ? fiches données sécurité techniques service technique télécharger telecharger F D S FDS telechargement téléchargement">
+					<div class="category-item-icon icon-question"></div>
+					<div class="category-item-text"><a>Comment obtenir les FDS ?</a>
+						<div style="display: none;" class="ghost-faq">
+							<h3>Comment obtenir les FDS ?</h3>
+							<p>Vous pouvez retrouver les FDS sur la page eshop du produit concerné.</p>
+						</div>
+					</div>
+				</div>
+				<div class="category-item"
+					data-search-system-item="J’ai une question technique, comment contacter le service technique ?">
+					<div class="category-item-icon icon-question"></div>
+					<div class="category-item-text"><a>J’ai une question technique,comment contacter le service
+							technique ?</a>
+						<div style="display: none;" class="ghost-faq">
+							<h3>J’ai une question technique,comment contacter le service technique ?</h3>
+							<p>Vous pouvez contacter le service technique par téléphone au 03 88 64 72 10 ou par mail à
+								l'adresse suivante : service.technique@wurth.fr</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="grid-element" data-search-system-category="">
+			<div class="category-illustration illustration-epi">
+				<div class="category-title">
+					<h2>Autres question</h2>
+				</div>
+			</div>
+			<div class="category-items">
+				<div class="category-item"
+					data-search-system-item="Où trouver les coordonnées de mon commercial ? numéro téléphone vendeur contact contacter numéro de téléphone numero de telephone appel appeler vendeurs commercial commercials">
+					<div class="category-item-icon icon-question"></div>
+					<div class="category-item-text"><a>Où trouver les coordonnées de mon commercial ?</a>
+						<div style="display: none;" class="ghost-faq">
+							<h3>Où trouver les coordonnées de mon commercial ?</h3>
+							<p>Vous trouverez les coordonnées de votre commercial en haut de page, une fois connecté à
+								votre compte. Il suffit de survoler l'icône "Mon compte" et les coordonnées
+								s’afficheront.</p>
+						</div>
+					</div>
+				</div>
+				<div class="category-item"
+					data-search-system-item="Je souhaite obtenir un duplicata de facture, comment faire ? facturation factures copie copies telecharger télécharger téléchargé telechargement téléchargement duplicata">
+					<div class="category-item-icon icon-question"></div>
+					<div class="category-item-text"><a>Je souhaite obtenir un duplicata de facture, comment faire ?</a>
+						<div style="display: none;" class="ghost-faq">
+							<h3>Je souhaite obtenir un duplicata de facture, comment faire ?</h3>
+							<p>Pour obtenir un duplicata de facture, merci de contacter le service client au <a
+									href="tel:0388881212">03.88.88.12.12</a>.</p>
+						</div>
+					</div>
+				</div>
+				<div class="category-item"
+					data-search-system-item="Réclamation ou changement sur mon compte (RIB, erreur de facturation, …)">
+					<div class="category-item-icon icon-question"></div>
+					<div class="category-item-text"><a>Réclamation ou changement sur mon compte (RIB, erreur de
+							facturation, …)</a>
+						<div style="display: none;" class="ghost-faq">
+							<h3>Réclamation ou changement sur mon compte (RIB, erreur de facturation, …)</h3>
+							<p>Pour tout changement ou réclamation, merci de contacter le service client au <a
+									href="tel:0388881212">03.88.88.12.12</a>.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="../monorepo/libs/core-tech/dist/v1.6.2.js" type="text/javascript"></script>
+<script type="text/javascript">// <![CDATA[
+	new Core.SearchSystem('finder');
+	new Core.TitleAnimations({
+		delay: 100,
+		duration: 2000
+	});
+// ]]></script>

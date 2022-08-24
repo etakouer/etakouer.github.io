@@ -1,0 +1,680 @@
+<style>
+	<!--
+	.category-item .category-item-text a {
+		color: #000;
+	}
+
+	.category-item .category-item-text a:hover {
+		color: #cc0000;
+		text-decoration: none;
+	}
+
+
+	#wfrmig-23 {
+		display: none !important;
+	}
+
+	[data-search-system-name] input {
+		width: 100%;
+		box-sizing: border-box;
+		padding: 1.5em 2em;
+		border: 2px solid;
+		border-color: rgba(0, 0, 0, 0);
+		background-color: rgba(0, 0, 0, 0.05);
+		outline: none;
+		transition: border-color .8s cubic-bezier(0.65, 0, 0.35, 1);
+	}
+
+	[data-search-system-name] input:hover,
+	[data-search-system-name] input:focus {
+		box-shadow: none;
+	}
+
+	[data-search-system-name] input:focus {
+		border-color: rgba(0, 0, 0, 1);
+	}
+
+	.vertical-space {
+		padding: 1.5em 0;
+	}
+
+	.grid-container {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+		gap: 1.5em;
+	}
+
+	body.ie .grid-container {
+		display: flex;
+		flex-direction: row;
+		flex-grow: 1;
+		flex-wrap: wrap;
+		margin: -.75em;
+	}
+
+	body.ie .grid-container>.grid-element {
+		flex-basis: calc((100% / 3) - (2 * .75em) - 1px);
+		min-width: 350px;
+		box-sizing: border-box;
+		margin: .75em;
+	}
+
+
+	.grid-container>.grid-element>.category-illustration {
+		background-color: rgba(0, 0, 0, 0.05);
+		background-size: 100% auto;
+		background-position: center;
+		background-repeat: no-repeat;
+		height: 12em;
+		position: relative;
+	}
+
+	.grid-container>.grid-element>.category-illustration::after {
+		content: '';
+		position: absolute;
+		z-index: 1;
+		left: 0;
+		bottom: 0;
+		height: 50%;
+		width: 100%;
+		background: linear-gradient(0deg, rgba(0, 0, 0, .5) 0%, rgba(255, 255, 255, 0) 100%);
+	}
+
+
+
+	.grid-container>.grid-element>.category-illustration>.category-title {
+		position: absolute;
+		z-index: 2;
+		bottom: 0;
+		left: 0;
+		margin: 0;
+	}
+
+	.grid-container>.grid-element>.category-illustration h2 {
+		color: white;
+		font-size: 1.65em;
+		margin: 0;
+	}
+
+	.grid-container>.grid-element>.category-illustration>.category-title,
+	.grid-container>.grid-element>.category-items {
+		padding: 1em 1.5em;
+	}
+
+	.category-items .category-item {
+		padding: 0;
+		position: relative;
+	}
+
+	.category-item-icon {
+		position: absolute;
+		left: -1.5em;
+		top: .25em;
+		width: 1em;
+		height: 1em;
+	}
+
+
+	/* TITLE ANIMATION */
+
+	h1[data-animation="title"] {
+		padding: 0;
+		margin: 0;
+		font-size: 2em;
+		display: inline-flex;
+		width: 100%;
+		overflow: hidden;
+	}
+
+	[data-animation="title"]>[data-animation-title-fixed] {
+		flex-basis: auto;
+		flex-shrink: 0;
+		flex-grow: 0;
+	}
+
+	[data-animation="title"]>[data-animation-title-fixed]::after {
+		content: '\00a0';
+	}
+
+	[data-animation="title"]>[data-animation-title-moving-container] {
+		display: block;
+		width: 100%;
+		position: relative;
+	}
+
+	[data-animation="title"]>[data-animation-title-moving-container]>[data-animation-title-moving] {
+		position: absolute;
+		color: #c00;
+		transform: translateY(100%);
+		animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1);
+	}
+
+
+	[data-animation-title-moving].animation-show {
+		animation: TitleAnimationShow 1.5s forwards;
+	}
+
+	[data-animation-title-moving].animation-hide {
+		animation: TitleAnimationHide 1.5s;
+	}
+
+	@keyframes TitleAnimationShow {
+		from {
+			transform: translateY(100%);
+		}
+
+		to {
+			transform: translateY(0%);
+		}
+	}
+
+	@keyframes TitleAnimationHide {
+		from {
+			transform: translateY(0%);
+		}
+
+		to {
+			transform: translateY(-100%);
+		}
+	}
+
+
+	/* CATEGORIES IMAGE DEFINITION */
+
+	.category-illustration.illustration-fixation {
+		background-image: url(https://media.wurth.fr/web_ressources/img/landing/hub_choice_guide/hub-fixation.jpg);
+	}
+
+	.category-illustration.illustration-chimique {
+		background-image: url(https://media.wurth.fr/web_ressources/img/landing/hub_choice_guide/hub-chimique.jpg);
+	}
+
+	.category-illustration.illustration-equipement {
+		background-image: url(https://media.wurth.fr/web_ressources/img/landing/hub_choice_guide/hub-equipement.jpg);
+	}
+
+	.category-illustration.illustration-nettoyage {
+		background-image: url(https://media.wurth.fr/web_ressources/img/landing/hub_choice_guide/hub-nettoyage.jpg);
+	}
+
+	.category-illustration.illustration-outillage {
+		background-image: url(https://media.wurth.fr/web_ressources/img/landing/hub_choice_guide/hub-outillage.jpg);
+	}
+
+	.category-illustration.illustration-epi {
+		background-image: url(https://media.wurth.fr/web_ressources/img/landing/hub_choice_guide/hub-epi.jpg);
+	}
+
+	.category-illustration.illustration-specifique {
+		background-image: url(https://media.wurth.fr/web_ressources/img/landing/hub_choice_guide/hub-specifique.jpg);
+	}
+
+
+	/* LINK TYPE IMAGE DEFINITION */
+
+	.category-item-icon.icon-file {
+		background-image: url(https://media.wurth.fr/web_ressources/img/landing/hub_choice_guide/svg/pictos_file_positive.svg);
+	}
+
+	.category-item-icon.icon-magnifier {
+		background-image: url(https://media.wurth.fr/web_ressources/img/landing/hub_choice_guide/svg/pictos_magnifier_positive.svg);
+	}
+
+	.category-item-icon.icon-calculator {
+		background-image: url(https://media.wurth.fr/web_ressources/img/landing/hub_choice_guide/svg/pictos_calculator_positive.svg);
+	}
+
+	.category-item-icon.icon-configurator {
+		background-image: url(https://media.wurth.fr/web_ressources/img/landing/hub_choice_guide/svg/pictos_configurator_positive.svg);
+	}
+
+
+	/* Icône new */
+	.category-item-text.new::after {
+		content: url('https://media.wurth.fr/eshop/img/animations/2022/0422-guide-de-choix-essuie-glace/new.gif');
+	}
+	-->
+</style>
+<div class="vertical-space">
+	<h1 data-animation="title"><span data-animation-title-fixed="">Bien choisir</span> <span
+			data-animation-title-moving-container=""> <span data-animation-title-moving=""><a
+					href="https://eshop.wurth.fr/Nos-Guides-de-Choix/SHOEFINDER/guide-de-choix-chaussures-de-securite.cyid/guides_de_choix.cgid/fr/FR/EUR/">Ses
+					chaussures</a></span> <span data-animation-title-moving=""><a
+					href="https://eshop.wurth.fr/Nos-Guides-de-Choix/ASTUCIO/configurateur-de-tiroirs-sur-mesure.cyid/guides_de_choix.cgid/fr/FR/EUR/">Son
+					tiroir sur mesure</a></span> <span data-animation-title-moving=""><a
+					href="https://eshop.wurth.fr/Nos-Guides-de-Choix/Assy-4/guide-de-choix-vis-a-bois.cyid/guides_de_choix.cgid/fr/FR/EUR/">Sa
+					vis à bois</a></span> <span data-animation-title-moving=""><a
+					href="https://eshop.wurth.fr/Nos-Guides-de-Choix/GLOVEFINDER/guide-de-choix-gants-de-protection.cyid/guides_de_choix.cgid/fr/FR/EUR/">Ses
+					gants de protection</a></span> <span data-animation-title-moving=""><a
+					href="https://eshop.wurth.fr/Nos-Guides-de-Choix/Lame-de-scie-sabre/guide-de-choix-sabre.cyid/guides_de_choix.cgid/fr/FR/EUR/">Sa
+					lame de scie Sabre</a></span> <span data-animation-title-moving=""><a
+					href="https://eshop.wurth.fr/Nos-Guides-de-Choix/configurateur-lunettes/configurateur-lunettes.cyid/guides_de_choix.cgid/fr/FR/EUR/">Ses
+					lunettes de protection</a></span> <span data-animation-title-moving=""><a
+					href="https://eshop.wurth.fr/Nos-Guides-de-Choix/Lame-de-scie-sauteuse/guide-de-choix-sauteuse.cyid/guides_de_choix.cgid/fr/FR/EUR/">Sa
+					Lame de scie sauteuse </a></span> <span data-animation-title-moving=""><a
+					href="https://eshop.wurth.fr/Nos-Guides-de-Choix/LANYARDFINDER/guide-de-choix-elingues-grade-80.cyid/guides_de_choix.cgid/fr/FR/EUR/">Son
+					élingue</a></span> </span></h1>
+</div>
+<div data-search-system-name="finder"
+	data-search-system-settings="{'feedMode': ['textContent', 'keyWords'],'autoSelect':false}"><input type="text"
+		data-search-system-input="" placeholder="Rechercher un guide, un calculateur ou un configurateur" />
+	<div class="grid-container vertical-space">
+		<div class="grid-element" data-search-system-category="">
+			<div class="category-illustration illustration-fixation">
+				<div class="category-title">
+					<h2>Fixation</h2>
+				</div>
+			</div>
+			<div class="category-items">
+				<div class="category-item" data-search-system-item="chevillage FIXATION scellement chimique">
+					<div class="category-item-icon icon-configurator"></div>
+					<div class="category-item-text new"><a
+							href="https://eshop.wurth.fr/Nos-Guides-de-Choix/DOWELFINDER/guide-de-choix-chevillage.cyid/guides_de_choix.cgid/fr/FR/EUR/">Trouver
+							la cheville adaptée</a></div>
+				</div>
+				<div class="category-item" data-search-system-item="Assy 4 FIXATION Vis à bois visserie">
+					<div class="category-item-icon icon-configurator"></div>
+					<div class="category-item-text"><a
+							href="https://eshop.wurth.fr/Nos-Guides-de-Choix/Assy-4/guide-de-choix-vis-a-bois.cyid/guides_de_choix.cgid/fr/FR/EUR/">Trouver
+							la bonne vis à bois</a></div>
+				</div>
+				<div class="category-item"
+					data-search-system-item="Scellement chimique : calculateur de volume de résine  FIXATION scellement chimique">
+					<div class="category-item-icon icon-calculator"></div>
+					<div class="category-item-text"><a
+							href="https://eshop.wurth.fr/Nos-Guides-de-Choix/Nos-Guides-de-Choix/Calculateur-de-volume-de-resine/calculateur-volume-resine.cyid/guides_de_choix.cgid/fr/FR/EUR/">Scellement
+							chimique : calculateur de volume de résine</a></div>
+				</div>
+				<div class="category-item"
+					data-search-system-item="Comment choisir, poser et retirer un rivet ? FIXATION rivets aveugles">
+					<div class="category-item-icon icon-magnifier"></div>
+					<div class="category-item-text"><a
+							href="https://infos.wurth.fr/comment-choisir-poser-et-retirer-un-rivet/"
+							target="_blank">Comment choisir, poser et retirer un rivet ?</a></div>
+				</div>
+				<div class="category-item" data-search-system-item="Recherche de produits normés DIN FIXATION">
+					<div class="category-item-icon icon-configurator"></div>
+					<div class="category-item-text"><a
+							href="https://eshop.wurth.fr/Catalogue-DIN/DIN.cyid/DIN.cgid/fr/FR/EUR/">Recherche de
+							produits normés DIN</a></div>
+				</div>
+				<div class="category-item" data-search-system-item="Recherche de produits normés ISO FIXATION">
+					<div class="category-item-icon icon-configurator"></div>
+					<div class="category-item-text"><a
+							href="https://eshop.wurth.fr/Catalogue-ISO/ISO.cyid/ISO.cgid/fr/FR/EUR/">Recherche de
+							produits normés ISO</a></div>
+				</div>
+				<div class="category-item"
+					data-search-system-item="Comment choisir sa vis à bois ? FIXATION Vis à bois assy 4  empreinte">
+					<div class="category-item-icon icon-magnifier"></div>
+					<div class="category-item-text"><a
+							href="https://infos.wurth.fr/comment-choisir-sa-vis-a-bois/?utm_source=Eshop&amp;utm_medium=guidedechoix&amp;utm_content=guidedechoix-vis-a-bois"
+							target="_blank">Comment choisir sa vis à bois ?</a></div>
+				</div>
+				<div class="category-item"
+					data-search-system-item="Vis à bois : pour quels matériaux ? FIXATION matériaux bois massif tendre support visserie">
+					<div class="category-item-icon icon-magnifier"></div>
+					<div class="category-item-text"><a
+							href="https://infos.wurth.fr/vis-a-bois-pour-quels-materiaux/?utm_source=Eshop&amp;utm_medium=guidedechoix&amp;utm_content=guidedechoix-vis-a-bois-materiaux"
+							target="_blank">Vis à bois : pour quels matériaux ?</a></div>
+				</div>
+				<div class="category-item" data-search-system-item="Comment choisir sa colle à bois ? FIXATION">
+					<div class="category-item-icon icon-magnifier"></div>
+					<div class="category-item-text"><a href="https://infos.wurth.fr/comment-choisir-une-colle-a-bois/"
+							target="_blank">Comment choisir sa colle à bois ?</a></div>
+				</div>
+				<div class="category-item" data-search-system-item="Comment choisir le bon insert filetés ? FIXATION">
+					<div class="category-item-icon icon-magnifier"></div>
+					<div class="category-item-text"><a href="https://infos.wurth.fr/inserts-filetes/"
+							target="_blank">Comment choisir le bon insert filetés ?</a></div>
+				</div>
+			</div>
+		</div>
+		<div class="grid-element" data-search-system-category="">
+			<div class="category-illustration illustration-chimique">
+				<div class="category-title">
+					<h2>Chimique</h2>
+				</div>
+			</div>
+			<div class="category-items">
+				<div class="category-item" data-search-system-item="Additifs CHIMIQUE  calculateur additifs">
+					<div class="category-item-icon icon-calculator"></div>
+					<div class="category-item-text"><a
+							href="https://eshop.wurth.fr/Nos-Guides-de-Choix/ADDITIFS/calculateur-additifs.cyid/guides_de_choix.cgid/fr/FR/EUR/">Calculez
+							vos profits grâce aux additifs Würth</a></div>
+				</div>
+				<div class="category-item"
+					data-search-system-item="Choisir un mastic : Silicone, PU, MS, Polymer ou Acrylique ? CHIMIQUE">
+					<div class="category-item-icon icon-magnifier"></div>
+					<div class="category-item-text"><a href="https://infos.wurth.fr/choisir-un-mastic/"
+							target="_blank">Comment choisir le bon Mastic ?</a></div>
+				</div>
+				<div class="category-item" data-search-system-item="Comment choisir son ruban adhésif ? CHIMIQUE">
+					<div class="category-item-icon icon-magnifier"></div>
+					<div class="category-item-text"><a href="https://infos.wurth.fr/comment-choisir-son-ruban-adhesif/"
+							target="_blank">Comment choisir son ruban adhésif ?</a></div>
+				</div>
+				<div class="category-item" data-search-system-item="Quelle colle cyanoacrylate choisir ? CHIMIQUE">
+					<div class="category-item-icon icon-magnifier"></div>
+					<div class="category-item-text"><a href="https://infos.wurth.fr/choisir-colle-cyanocrylate/"
+							target="_blank">Quelle colle cyanoacrylate choisir ?</a></div>
+				</div>
+				<div class="category-item"
+					data-search-system-item="Colle pare-brise PU ou MS polymères ? Avec ou sans primaire ? CHIMIQUE">
+					<div class="category-item-icon icon-magnifier"></div>
+					<div class="category-item-text"><a
+							href="https://infos.wurth.fr/pourquoi-utiliser-un-primaire-lors-du-collage-des-pare-brises/"
+							target="_blank">Quelle colle Pare-Brise choisir ?</a></div>
+				</div>
+				<div class="category-item"
+					data-search-system-item="A quoi sert un frein filet, un stop roulement ou un étanche tube ? CHIMIQUE">
+					<div class="category-item-icon icon-magnifier"></div>
+					<div class="category-item-text"><a href="https://infos.wurth.fr/guide-anaerobie/"
+							target="_blank">Frein Filet, stop roulement, étanche tube : Explications</a></div>
+				</div>
+				<div class="category-item" data-search-system-item="Qu’est-ce qu’une mousse polyuréthane ? CHIMIQUE">
+					<div class="category-item-icon icon-magnifier"></div>
+					<div class="category-item-text"><a href="https://infos.wurth.fr/mousse-polyurethane/"
+							target="_blank">Qu’est-ce qu’une mousse polyuréthane ?</a></div>
+				</div>
+				<div class="category-item"
+					data-search-system-item="Quels sont les différents types de colles ? CHIMIQUE">
+					<div class="category-item-icon icon-magnifier"></div>
+					<div class="category-item-text"><a href="https://infos.wurth.fr/types-colles/" target="_blank">Quels
+							sont les différents types de colles ?</a></div>
+				</div>
+			</div>
+		</div>
+		<div class="grid-element" data-search-system-category="">
+			<div class="category-illustration illustration-equipement">
+				<div class="category-title">
+					<h2>Equipement Atelier / Chantier</h2>
+				</div>
+			</div>
+			<div class="category-items">
+				<div class="category-item"
+					data-search-system-item="Trouver la bonne élingue de levage (grade 80)  EQUIPEMENT ATELIER / CHANTIER grade 80">
+					<div class="category-item-icon icon-configurator"></div>
+					<div class="category-item-text"><a
+							href="https://eshop.wurth.fr/Nos-Guides-de-Choix/LANYARDFINDER/guide-de-choix-elingues-grade-80.cyid/guides_de_choix.cgid/fr/FR/EUR/">Trouver
+							la bonne élingue de levage (grade 80)</a></div>
+				</div>
+				<div class="category-item"
+					data-search-system-item="Bien choisir son tuyau EQUIPEMENT ATELIER / CHANTIER">
+					<div class="category-item-icon icon-file"></div>
+					<div class="category-item-text"><a
+							href="https://media.wurth.fr/pdf/Dimensions-et-poids-en-fonction-des-differentes-matieres-de-tuyaux.pdf"
+							target="_blank">Bien choisir son tuyau</a></div>
+				</div>
+				<div class="category-item"
+					data-search-system-item="Soudage MMA, MIG/MAG ou TIG ? EQUIPEMENT ATELIER / CHANTIER soudure soudeur cagoule">
+					<div class="category-item-icon icon-magnifier"></div>
+					<div class="category-item-text"><a href="https://infos.wurth.fr/soudage-mma-mig-mag-ou-tig/"
+							target="_blank">Soudage MMA, MIG/MAG ou TIG ?</a></div>
+				</div>
+				<div class="category-item"
+					data-search-system-item="Les différents lasers de chantier EQUIPEMENT ATELIER / CHANTIER">
+					<div class="category-item-icon icon-magnifier"></div>
+					<div class="category-item-text"><a href="https://infos.wurth.fr/choisir-laser-chantier/"
+							target="_blank">Les différents lasers de chantier</a></div>
+				</div>
+				<div class="category-item"
+					data-search-system-item="Quel raccord en laiton choisir ? EQUIPEMENT ATELIER / CHANTIER Air comprimé raccord">
+					<div class="category-item-icon icon-file"></div>
+					<div class="category-item-text"><a href="https://media.wurth.fr/pdf/Raccords-en-laiton.pdf"
+							target="_blank">Quel raccord en laiton choisir ?</a></div>
+				</div>
+				<div class="category-item"
+					data-search-system-item="Qu'est-ce qu'un éclairage de sécurité ? EQUIPEMENT ATELIER / CHANTIER baes LED">
+					<div class="category-item-icon icon-magnifier"></div>
+					<div class="category-item-text"><a href="https://infos.wurth.fr/eclairage-de-securite/"
+							target="_blank">Qu'est-ce qu'un éclairage de sécurité ?</a></div>
+				</div>
+			</div>
+		</div>
+		<div class="grid-element" data-search-system-category="">
+			<div class="category-illustration illustration-nettoyage">
+				<div class="category-title">
+					<h2>Nettoyage</h2>
+				</div>
+			</div>
+			<div class="category-items">
+				<div class="category-item" data-search-system-item="Comment choisir son chiffon microfibre ? NETTOYAGE">
+					<div class="category-item-icon icon-magnifier"></div>
+					<div class="category-item-text"><a href="https://infos.wurth.fr/choisir-chiffon-microfibre/"
+							target="_blank">Comment choisir son chiffon microfibre ?</a></div>
+				</div>
+				<div class="category-item"
+					data-search-system-item="Nettoyage et rénovation de véhicule, quels produits choisir ? NETTOYAGE">
+					<div class="category-item-icon icon-file"></div>
+					<div class="category-item-text"><a
+							href="https://media.wurth.fr/pdf/Apercu-de-la-gamme-nettoyage-renovation.pdf"
+							target="_blank">Nettoyage et rénovation de véhicule, quels produits choisir ?</a></div>
+				</div>
+				<div class="category-item"
+					data-search-system-item="Quel produit de nettoyage pour votre portique de lavage ? NETTOYAGE">
+					<div class="category-item-icon icon-file"></div>
+					<div class="category-item-text"><a
+							href="https://media.wurth.fr/pdf/La-gamme-des-nettoyants-pour-portiques-de-Lavage.pdf"
+							target="_blank">Quel produit de nettoyage pour votre portique de lavage ?</a></div>
+				</div>
+				<div class="category-item" data-search-system-item="Quel nettoyant de carrosserie choisir ? NETTOYAGE">
+					<div class="category-item-icon icon-magnifier"></div>
+					<div class="category-item-text"><a href="https://infos.wurth.fr/nettoyant-carrosserie-choix/"
+							target="_blank">Quel nettoyant de carrosserie choisir ?</a></div>
+				</div>
+			</div>
+		</div>
+		<div class="grid-element" data-search-system-category="">
+			<div class="category-illustration illustration-outillage">
+				<div class="category-title">
+					<h2>Outillage</h2>
+				</div>
+			</div>
+			<div class="category-items">
+				<div class="category-item" data-search-system-item="Lame de scie sauteuse  OUTILLAGE  consommable">
+					<div class="category-item-icon icon-configurator"></div>
+					<div class="category-item-text"><a
+							href="https://eshop.wurth.fr/Nos-Guides-de-Choix/Lame-de-scie-sauteuse/guide-de-choix-sauteuse.cyid/guides_de_choix.cgid/fr/FR/EUR/">Trouver
+							la bonne lame de scie sauteuse</a></div>
+				</div>
+				<div class="category-item" data-search-system-item="Lame de scie sabre  OUTILLAGE  consommable">
+					<div class="category-item-icon icon-configurator"></div>
+					<div class="category-item-text"><a
+							href="https://eshop.wurth.fr/Nos-Guides-de-Choix/Lame-de-scie-sabre/guide-de-choix-sabre.cyid/guides_de_choix.cgid/fr/FR/EUR/">Trouver
+							la bonne lame de scie sabre</a></div>
+				</div>
+				<div class="category-item"
+					data-search-system-item="Disque diamant : fonctionnement, normes et usages OUTILLAGE  consommable">
+					<div class="category-item-icon icon-magnifier"></div>
+					<div class="category-item-text"><a href="https://infos.wurth.fr/disques-diamant/"
+							target="_blank">Disque diamant : fonctionnement, normes et usages</a></div>
+				</div>
+				<div class="category-item"
+					data-search-system-item="Choisir le bon disque à tronçonner OUTILLAGE  consommable">
+					<div class="category-item-icon icon-magnifier"></div>
+					<div class="category-item-text"><a href="https://infos.wurth.fr/choisir-disque-a-tronconner/"
+							target="_blank">Choisir le bon disque à tronçonner</a></div>
+				</div>
+				<div class="category-item"
+					data-search-system-item="Choisir le bon disque à lamelles OUTILLAGE  consommable">
+					<div class="category-item-icon icon-magnifier"></div>
+					<div class="category-item-text"><a href="https://infos.wurth.fr/choisir-le-bon-disque-a-lamelles/"
+							target="_blank">Choisir le bon disque à lamelles</a></div>
+				</div>
+				<div class="category-item"
+					data-search-system-item="Choisir le bon foret pour l'inox, l'acier ou encore l'alu OUTILLAGE  consommable">
+					<div class="category-item-icon icon-magnifier"></div>
+					<div class="category-item-text"><a href="https://infos.wurth.fr/choisir-foret-metal/"
+							target="_blank">Choisir le bon foret pour l'inox, l'acier ou encore l'alu</a></div>
+				</div>
+				<div class="category-item"
+					data-search-system-item="Comment choisir le bon abrasif pour le ponçage du bois ? OUTILLAGE  consommable">
+					<div class="category-item-icon icon-magnifier"></div>
+					<div class="category-item-text"><a href="https://infos.wurth.fr/choisir-abrasif-poncage-bois/"
+							target="_blank">Comment choisir le bon abrasif pour le ponçage du bois ?</a></div>
+				</div>
+			</div>
+		</div>
+		<div class="grid-element" data-search-system-category="">
+			<div class="category-illustration illustration-epi">
+				<div class="category-title">
+					<h2>EPI</h2>
+				</div>
+			</div>
+			<div class="category-items">
+				<div class="category-item"
+					data-search-system-item="Trouver les gants de protection adaptés EPI protection individuelle">
+					<div class="category-item-icon icon-configurator"></div>
+					<div class="category-item-text"><a
+							href="https://eshop.wurth.fr/Nos-Guides-de-Choix/GLOVEFINDER/guide-de-choix-gants-de-protection.cyid/guides_de_choix.cgid/fr/FR/EUR/">Trouver
+							les gants de protection adaptés</a></div>
+				</div>
+				<div class="category-item"
+					data-search-system-item="Trouver les chaussures de sécurité adaptées EPI protection individuelle chaussure de sécurité">
+					<div class="category-item-icon icon-configurator"></div>
+					<div class="category-item-text"><a
+							href="https://eshop.wurth.fr/Nos-Guides-de-Choix/SHOEFINDER/guide-de-choix-chaussures-de-securite.cyid/guides_de_choix.cgid/fr/FR/EUR/">Trouver
+							les chaussures de sécurité adaptées</a></div>
+				</div>
+				<div class="category-item"
+					data-search-system-item="Trouver les lunettes de protection adaptées EPI protection individuelle lunettes de protection">
+					<div class="category-item-icon icon-configurator"></div>
+					<div class="category-item-text"><a
+							href="https://eshop.wurth.fr/Nos-Guides-de-Choix/configurateur-lunettes/configurateur-lunettes.cyid/guides_de_choix.cgid/fr/FR/EUR/">Trouver
+							les lunettes de protection adaptées</a></div>
+				</div>
+				<div class="category-item"
+					data-search-system-item="Gants à usage unique : quelles propriétés pour quelles utilisations ? EPI protection individuelle">
+					<div class="category-item-icon icon-file"></div>
+					<div class="category-item-text"><a
+							href="https://media.wurth.fr/pdf/Gants-a-usage-unique-et-tableau-chimique.pdf"
+							target="_blank">Gants à usage unique : quelles propriétés pour quelles utilisations ?</a>
+					</div>
+				</div>
+				<div class="category-item"
+					data-search-system-item="Quelles sont les normes concernant les vêtements de travail ? EPI protection individuelle modyf">
+					<div class="category-item-icon icon-magnifier"></div>
+					<div class="category-item-text"><a href="https://infos.wurth.fr/normes-vetements-de-travail/"
+							target="_blank">Quelles sont les normes concernant les vêtements de travail ?</a></div>
+				</div>
+				<div class="category-item"
+					data-search-system-item="Quelle protection respiratoire choisir ? EPI protection individuelle masque">
+					<div class="category-item-icon icon-magnifier"></div>
+					<div class="category-item-text"><a
+							href="https://infos.wurth.fr/comment-choisir-masque-protection-respiratoire/"
+							target="_blank">Quelle protection respiratoire choisir ?</a></div>
+				</div>
+				<div class="category-item"
+					data-search-system-item="Bien choisir ses gants jetables EPI protection individuelle">
+					<div class="category-item-icon icon-magnifier"></div>
+					<div class="category-item-text"><a href="https://infos.wurth.fr/gants-jetables/"
+							target="_blank">Bien choisir ses gants jetables</a></div>
+				</div>
+			</div>
+		</div>
+		<div class="grid-element" data-search-system-category="">
+			<div class="category-illustration illustration-specifique">
+				<div class="category-title">
+					<h2>Guides spécifiques Univers métiers</h2>
+				</div>
+			</div>
+			<div class="category-items">
+				<div class="category-item"
+					data-search-system-item="Trouver les balais d'essuie glace par marque/modèle Guides spécifiques Univers métiers">
+					<div class="category-item-icon icon-configurator"></div>
+					<div class="category-item-text new"><a
+							href="https://eshop.wurth.fr/Nos-Guides-de-Choix/WIPPERFINDER/guide-de-choix-essuie-glace.cyid/guides_de_choix.cgid/fr/FR/EUR/">Trouver
+							les balais d'essuie glace par marque/modèle</a></div>
+				</div>
+				<div class="category-item"
+					data-search-system-item="Astucio : Configurez vos tiroirs sur-mesure Guides spécifiques Univers métiers">
+					<div class="category-item-icon icon-configurator"></div>
+					<div class="category-item-text"><a
+							href="https://eshop.wurth.fr/Nos-Guides-de-Choix/ASTUCIO/configurateur-de-tiroirs-sur-mesure.cyid/guides_de_choix.cgid/fr/FR/EUR/">Astucio
+							: Configurez vos tiroirs sur-mesure</a></div>
+				</div>
+				<div class="category-item"
+					data-search-system-item="Trouver l'outillage spécifique à une marque/modèle de véhicule Guides spécifiques Univers métiers">
+					<div class="category-item-icon icon-configurator"></div>
+					<div class="category-item-text"><a href="http://wurth.toolfinder.it/?lang=fr">Trouver l'outillage
+							spécifique à une marque/modèle de véhicule</a></div>
+				</div>
+				<div class="category-item"
+					data-search-system-item="Trouvez les bonnes agrafes de carrosserie Guides spécifiques Univers métiers">
+					<div class="category-item-icon icon-configurator"></div>
+					<div class="category-item-text"><a
+							href="https://eshop.wurth.fr/Nos-Guides-de-Choix/Agrafes-de-carrosserie/guide-de-choix-agrafes.cyid/guides_de_choix.cgid/fr/FR/EUR/">Trouvez
+							les bonnes agrafes de carrosserie</a></div>
+				</div>
+				<div class="category-item"
+					data-search-system-item="Tout savoir sur le DTU 36.5 (pose de fenêtre) Guides spécifiques Univers métiers">
+					<div class="category-item-icon icon-magnifier"></div>
+					<div class="category-item-text"><a
+							href="https://infos.wurth.fr/menuiserie-les-details-de-la-norme-dtu-36-5-pour-les-poses-de-fenetres/"
+							target="_blank">Tout savoir sur le DTU 36.5 (pose de fenêtre)</a></div>
+				</div>
+				<div class="category-item"
+					data-search-system-item="Comment choisir la bonne charnière de meuble ? Guides spécifiques Univers métiers">
+					<div class="category-item-icon icon-magnifier"></div>
+					<div class="category-item-text"><a
+							href="https://infos.wurth.fr/comment-choisir-la-bonne-charniere-de-meuble-en-7-etapes/"
+							target="_blank">Comment choisir la bonne charnière de meuble ?</a></div>
+				</div>
+				<div class="category-item"
+					data-search-system-item="Choisir son polish de carrosserie Guides spécifiques Univers métiers">
+					<div class="category-item-icon icon-magnifier"></div>
+					<div class="category-item-text"><a href="https://infos.wurth.fr/choisir-polish-de-carrosserie/"
+							target="_blank">Choisir son polish de carrosserie</a></div>
+				</div>
+			</div>
+		</div>
+		<!-- <div class="grid-element" data-search-system-category>
+			
+				<div class="category-title">
+					<h2>Légende</h2>
+				</div>
+			
+			<div class="category-items">
+				<div class="category-item" data-search-system-item>
+					<div class="category-item-icon icon-configurator"></div>
+					<div class="category-item-text">
+						Configurateur
+					</div>
+				</div>
+				<div class="category-item" data-search-system-item>
+					<div class="category-item-icon icon-magnifier"></div>
+					<div class="category-item-text">
+						Article de blog
+					</div>
+				</div>
+				<div class="category-item" data-search-system-item>
+					<div class="category-item-icon icon-calculator"></div>
+					<div class="category-item-text">
+						Calculateur
+					</div>
+				</div>
+				<div class="category-item" data-search-system-item>
+					<div class="category-item-icon icon-file"></div>
+					<div class="category-item-text">
+						PDF
+					</div>
+				</div>
+				
+				
+			</div>
+		</div>
+
+	</div>
+
+</div>  -->
+		<script src="../monorepo/libs/core-tech/dist/v1.6.2.js" type="text/javascript"></script>
+		<script type="text/javascript">// <![CDATA[
+			new Core.SearchSystem('finder');
+			new Core.TitleAnimations({
+				delay: 100,
+				duration: 2000
+			});
+// ]]></script>
+	</div>
+</div>
