@@ -668,20 +668,6 @@
 	</div>
 
 </div>  -->
-		<script id="worker1" type="javascript/worker">
-	self.addEventListener( "install", function( event ){
-    self.skipWaiting();
-    console.log( "WORKER: install event in progress." );
-});
-
-self.addEventListener( "activate", event => {
-    console.log('WORKER: activate event in progress.');
-});
-
-self.addEventListener( "fetch", event => {
-	console.log('WORKERI: Fetching', event.request);
-});
-</script>
 		<script src="v1.6.2.js" type="text/javascript"></script>
 		<script type="text/javascript">// <![CDATA[
 			new Core.SearchSystem('finder');
@@ -689,14 +675,6 @@ self.addEventListener( "fetch", event => {
 				delay: 100,
 				duration: 2000
 			});
-			if ("serviceWorker" in navigator) {
-				console.log('worker')
-			}
-			var blob = new Blob([
-				document.querySelector('#worker1').textContent
-			], { type: "text/javascript" })
-
-			var worker = new Worker(window.URL.createObjectURL(blob));
 // ]]></script>
 	</div>
 </div>
